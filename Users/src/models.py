@@ -8,4 +8,5 @@ class User(BaseModel):
 
     email = mapped_column(String(), nullable=False, unique=True)
     password = mapped_column(String(), nullable=False)
+    username = mapped_column(String(), nullable=True)
 
