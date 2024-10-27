@@ -17,7 +17,7 @@ def get_public_key() -> str:
 public_key = get_public_key()
 
 
-DATABASE_URL: str = (f"postgresql+asyncpg://{os.getenv("DATABASE_USERNAME")}:{os.getenv("DATABASE_PASSWORD")}"
-                     f"@{os.getenv("DATABASE_HOST")}:{os.getenv("DATABASE_PORT")}/{os.getenv("DATABASE_NAME")}")
+DATABASE_URL: str = (f"postgresql+asyncpg://{os.getenv("USERS_DATABASE_USERNAME")}:{os.getenv("USERS_DATABASE_PASSWORD")}"
+                     f"@{os.getenv("USERS_DATABASE_HOST")}:{os.getenv("USERS_DATABASE_PORT")}/{os.getenv("USERS_DATABASE_NAME")}")
 DATABASE_ECHO: bool = False
 

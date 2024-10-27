@@ -11,12 +11,12 @@ ALGORITHM: str = "RS256"
 
 
 def get_public_key() -> str:
-    with open("src/certs/jwtRS256.key.pub", "r") as key:
+    with open("shared_data/jwtRS256.key.pub", "r") as key:
         return key.read()
 
 public_key = get_public_key()
 
 
-DATABASE_URL: str = (f"postgresql+asyncpg://{os.getenv("DATABASE_USERNAME")}:{os.getenv("DATABASE_PASSWORD")}"
-                     f"@{os.getenv("DATABASE_HOST")}:{os.getenv("DATABASE_PORT")}/{os.getenv("DATABASE_NAME")}")
+DATABASE_URL: str = (f"postgresql+asyncpg://{os.getenv("MESSAGES_DATABASE_USERNAME")}:{os.getenv("MESSAGES_DATABASE_PASSWORD")}"
+                     f"@{os.getenv("MESSAGES_DATABASE_HOST")}:{os.getenv("MESSAGES_DATABASE_PORT")}/{os.getenv("MESSAGES_DATABASE_NAME")}")
 DATABASE_ECHO: bool = False
