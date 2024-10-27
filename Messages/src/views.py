@@ -12,14 +12,13 @@ from src.utils import get_current_user, get_user
 from src.schemas import MessageSchema, ChatSchemaSmall, ChatSchema
 
 
-router = APIRouter(prefix="messages/", tags=["Messages"])
-
+router = APIRouter(prefix="/messages", tags=["Messages"])
 
 
 @router.get("chats/", response_model=List[ChatSchemaSmall])
-async def get_chats(
+async def get_chats(request: Request,
                     session: AsyncSession = Depends(get_session),
-                    request: Request) -> List[ChatSchemaSmall]:
+                    ) -> List[ChatSchemaSmall]:
     """Возвращает все чаты авторизованного пользователя."""
 
     current_user = await get_current_user(request)
@@ -30,8 +29,8 @@ async def get_chats(
 
 @router.post("chats/", response_model=ChatSchema)
 async def create_chat(
-                      session: AsyncSession = Depends(get_session),
-                      email: EmailStr, request: Request) -> ChatSchema:
+                      email: EmailStr, request: Request,
+                      session: AsyncSession = Depends(get_session)) -> ChatSchema:
     """Создает личный чат с пользователем."""
 
     current_user = await get_current_user(request=request)
@@ -39,7 +38,6 @@ async def create_chat(
     chat = await create_chat_db(session, current_user, companion)
 
     return chat
-
 
 
 @router.websocket("chats/{chat_id}")

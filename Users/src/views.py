@@ -9,7 +9,7 @@ from src.utils import get_current_user
 from src.db import get_session
 
 
-router = APIRouter(prefix="users/", tags=["Users"])
+router = APIRouter(prefix="/users", tags=["Users"])
 
 
 @router.post('create_user/', response_model=ReadUser)
@@ -31,22 +31,22 @@ async def read_user(email: EmailStr | None, limit: int | None, offset: int | Non
     return users
 
 
-@router.put('update_user/', response_model=ReadUser)
-async def update_user(payload: UpdateUser,
-                      session: AsyncSession = Depends(get_session),
-                      current_user: ReadUser = Depends(get_current_user(Request))) -> ReadUser:
-    """Обновление пользователя."""
-    
-    user = await update_user_db(payload=payload, session=session,
-                                current_user=current_user)
-    return user
-
-
-@router.delete('delete_user/', response_model=ReadUser)
-async def delete_user(session: AsyncSession = Depends(get_session),
-                      current_user: ReadUser = Depends(get_current_user(Request))) -> ReadUser:
-    """Удаление пользователя."""
-    
-    user = await delete_user_db(session=session, current_user=current_user)
-    return user
+# @router.put('update_user/', response_model=ReadUser)
+# async def update_user(payload: UpdateUser,
+#                       session: AsyncSession = Depends(get_session),
+#                       current_user: ReadUser = Depends(get_current_user(Request))) -> ReadUser:
+#     """Обновление пользователя."""
+#
+#     user = await update_user_db(payload=payload, session=session,
+#                                 current_user=current_user)
+#     return user
+#
+#
+# @router.delete('delete_user/', response_model=ReadUser)
+# async def delete_user(session: AsyncSession = Depends(get_session),
+#                       current_user: ReadUser = Depends(get_current_user(Request))) -> ReadUser:
+#     """Удаление пользователя."""
+#
+#     user = await delete_user_db(session=session, current_user=current_user)
+#     return user
 

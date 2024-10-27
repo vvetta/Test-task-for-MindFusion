@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
 
   db1_for_users:
@@ -36,7 +34,7 @@ services:
     networks:
       - app-network
     volumes:
-      - shared_data:/shared_data
+      - ./shared_data:/shared_data
     ports:
       - "8001:8000"
 
@@ -52,7 +50,7 @@ services:
     networks:
       - app-network
     volumes:
-      - shared_data:/shared_data
+      - ./shared_data:/shared_data
     ports:
       - "8002:8000"
 
@@ -62,7 +60,7 @@ services:
     networks:
       - app-network
     volumes:
-      - shared_data:/shared_data
+      - ./shared_data:/shared_data
     ports:
       - "8003:8000"
 

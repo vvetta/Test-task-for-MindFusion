@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 
 
 class BaseModel(DeclarativeBase):
-    __abstract__ == True
+    __abstract__ = True
 
     @declared_attr
     def __tablename__(cls):

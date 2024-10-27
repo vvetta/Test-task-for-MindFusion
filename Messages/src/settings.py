@@ -14,7 +14,11 @@ def get_public_key() -> str:
     with open("shared_data/jwtRS256.key.pub", "r") as key:
         return key.read()
 
-public_key = get_public_key()
+try:
+    public_key = get_public_key()
+except Exception as e:
+    print(e)
+    public_key = 1
 
 
 DATABASE_URL: str = (f"postgresql+asyncpg://{os.getenv("MESSAGES_DATABASE_USERNAME")}:{os.getenv("MESSAGES_DATABASE_PASSWORD")}"

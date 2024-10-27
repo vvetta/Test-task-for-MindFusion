@@ -6,7 +6,7 @@ from src.utils import get_user, create_token_payload, encode_jwt, \
     hash_password, decode_jwt
 
 
-router = APIRouter(prefix="auth/", tags=["Auth"])
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 @router.post("login/", response_model=AuthToken)
